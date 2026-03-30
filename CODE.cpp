@@ -1,82 +1,107 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-class Bus {
-private:
+// 🔷 Abstract Class (Abstraction)
+class BusSystem {
+public:
+    virtual void bookSeat(int seats) = 0;   // pure virtual function
+    virtual void showSeats() = 0;
+};
+
+// 🔷 Base Class (Encapsulation + Inheritance)
+class Bus : public BusSystem {
+protected:
     int totalSeats;
     int bookedSeats;
 
 public:
-    Bus(int seats) {
-        totalSeats = seats;
+    Bus() {
+        totalSeats = 30;
         bookedSeats = 0;
     }
 
+    // Polymorphism (virtual function)
+    void bookSeat(int seats) {
+        if (bookedSeats + seats <= totalSeats) {
+            bookedSeats += seats;
+            cout << seats << " seats booked in Normal Bus.\n";
+        } else {
+            cout << "Seats not available in Normal Bus.\n";
+        }
+    }
+
     void showSeats() {
-        cout << "Total Seats: " << totalSeats << endl;
-        cout << "Available Seats: " << (totalSeats - bookedSeats) << endl;
-    }
-
-    void bookSeat(string name) {
-        if (bookedSeats < totalSeats) {
-            bookedSeats++;
-            cout << "Seat booked successfully for " << name << endl;
-        } else {
-            cout << "No seats available!" << endl;
-        }
-    }
-
-    void cancelSeat(string name) {
-        if (bookedSeats > 0) {
-            bookedSeats--;
-            cout << "Seat cancelled for " << name << endl;
-        } else {
-            cout << "No bookings to cancel!" << endl;
-        }
+        cout << "Normal Bus Available Seats: " 
+             << totalSeats - bookedSeats << endl;
     }
 };
 
+// 🔷 Derived Class (Inheritance + Polymorphism)
+class LuxuryBus : public Bus {
+public:
+    // Function Overriding (Polymorphism)
+    void bookSeat(int seats) {
+        if (bookedSeats + seats <= totalSeats) {
+            bookedSeats += seats;
+            cout << seats << " seats booked in Luxury Bus.\n";
+        } else {
+            cout << "Luxury Bus Full!\n";
+        }
+    }
+
+    void showSeats() {
+        cout << "Luxury Bus Available Seats: " 
+             << totalSeats - bookedSeats << endl;
+    }
+};
+
+// 🔷 Main Function
 int main() {
-    Bus b(5);
-    int choice;
-    string name;
+    int choice, seats;
+
+    BusSystem* bus1;   // base class pointer (Abstraction + Polymorphism)
+
+    Bus normalBus;
+    LuxuryBus luxuryBus;
 
     do {
-        cout << "\n--- Bus Reservation System ---\n";
-        cout << "1. Show Available Seats\n";
-        cout << "2. Book Seat\n";
-        cout << "3. Cancel Seat\n";
+        cout << "\n--- Bus Booking System ---\n";
+        cout << "1. Normal Bus Booking\n";
+        cout << "2. Luxury Bus Booking\n";
+        cout << "3. Show Seats\n";
         cout << "4. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "Enter choice: ";
         cin >> choice;
 
-        switch(choice) {
-            case 1:
-                b.showSeats();
-                break;
+        switch (choice) {
+        case 1:
+            bus1 = &normalBus;
+            cout << "Enter seats: ";
+            cin >> seats;
+            bus1->bookSeat(seats);
+            break;
 
-            case 2:
-                cout << "Enter passenger name: ";
-                cin >> name;
-                b.bookSeat(name);
-                break;
+        case 2:
+            bus1 = &luxuryBus;
+            cout << "Enter seats: ";
+            cin >> seats;
+            bus1->bookSeat(seats);
+            break;
 
-            case 3:
-                cout << "Enter passenger name: ";
-                cin >> name;
-                b.cancelSeat(name);
-                break;
+        case 3:
+            normalBus.showSeats();
+            luxuryBus.showSeats();
+            break;
 
-            case 4:
-                cout << "Exiting..." << endl;
-                break;
+        case 4:
+            cout << "Thank You!\n";
+            break;
 
-            default:
-                cout << "Invalid choice!" << endl;
+        default:
+            cout << "Invalid Choice!\n";
         }
 
-    } while(choice != 4);
+    } while (choice != 4);
 
     return 0;
 }
