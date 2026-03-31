@@ -1,18 +1,18 @@
 Bus Reservation System
-1. Introduction
+Introduction
 
-Bus Reservation System ek software application hai jo users ko bus tickets book karne, cancel karne aur available seats check karne ki facility deta hai. Yeh system manual booking process ko digital banata hai aur time-saving aur error-free system provide karta hai.
+A Bus Reservation System is a software application that allows users to book bus tickets, cancel bookings, and check available seats. It converts the manual booking process into a digital system, making it faster, easier, and error-free.
 
-Is project me hum Object-Oriented Programming (OOP) concepts jaise classes, objects, encapsulation, inheritance aur polymorphism ka use karte hain.
+In this project, we use Object-Oriented Programming (OOP) concepts such as classes, objects, encapsulation, inheritance, and polymorphism.
 
-2. Objectives of the Project
-Bus tickets ko easily book karna
-Available seats show karna
-Ticket cancel karne ka option dena
-Passenger details store karna
-Efficient aur user-friendly system banana
-3. Methodology / System Design
-🔹 Classes Used:
+Objectives of the Project
+To book bus tickets easily
+To display available seats
+To provide a ticket cancellation option
+To store passenger details
+To create an efficient and user-friendly system
+Methodology / System Design
+🔹 Classes Used
 Bus Class
 Bus number
 Total seats
@@ -21,21 +21,22 @@ Reservation Class
 Passenger name
 Seat number
 Booking details
-🔹 Features:
+🔹 Features
 Book Ticket
 Cancel Ticket
 Show Available Seats
 Exit System
-🔹 Flow:
-User menu select karega
-System input lega
-Data process hoga
-Output show hoga
+🔹 Flow of the System
+User selects an option from the menu
+System takes input from the user
+Data is processed
+Output is displayed to the user
+Conclusion
 
-4. Conclusion
+The Bus Reservation System is a simple and effective application that automates the ticket booking process. Through this project, we understand the practical use of OOP concepts.
 
-Bus Reservation System ek simple aur effective application hai jo booking process ko automate karta hai. Is project ke through humne OOP concepts ka practical use samjha. Future me is system ko aur advance bana sakte hain jaise:
+In the future, this system can be enhanced by adding:
 
 Online payment system
 Database integration
-Multiple buses support
+Support for multiple buses
